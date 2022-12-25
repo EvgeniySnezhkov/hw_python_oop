@@ -123,8 +123,7 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     train: dict = {'SWM': Swimming,
                    'RUN': Running,
-                   'WLK': SportsWalking
-                  }
+                   'WLK': SportsWalking}
     if workout_type not in train:
         f'Типа тренировки {workout_type} нет в нашем словаре'
     return train[workout_type](*data)
