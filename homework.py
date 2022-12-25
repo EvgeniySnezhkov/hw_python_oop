@@ -124,12 +124,12 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    train: dict[str, str] = {'SWM': Swimming,
-                            'RUN': Running,
-                            'WLK': SportsWalking
+    train: dict = {'SWM': Swimming,
+                   'RUN': Running,
+                   'WLK': SportsWalking
     }
     if workout_type not in train:
-        raise f'Типа тренировки {workout_type} нет в нашем словаре'
+        f'Типа тренировки {workout_type} нет в нашем словаре'
     return train[workout_type](*data)
 
 
