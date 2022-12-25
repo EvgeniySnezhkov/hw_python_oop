@@ -77,8 +77,7 @@ class SportsWalking(Training):
                  action: int,
                  duration: float,
                  weight: float,
-                 height: int
-                ) -> None:
+                 height: int) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -87,8 +86,7 @@ class SportsWalking(Training):
                 + ((self.get_mean_speed() * self.KMH_IN_MSEC) ** 2
                  / (self.height / self.CM_IN_M))
                 * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
-                * self.weight) * self.duration * self.MIN_IN_H
-        )
+                * self.weight) * self.duration * self.MIN_IN_H)
 
 
 class Swimming(Training):
@@ -126,7 +124,7 @@ def read_package(workout_type: str, data: list) -> Training:
     train: dict = {'SWM': Swimming,
                    'RUN': Running,
                    'WLK': SportsWalking
-    }
+                  }
     if workout_type not in train:
         f'Типа тренировки {workout_type} нет в нашем словаре'
     return train[workout_type](*data)
