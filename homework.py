@@ -16,7 +16,7 @@ class InfoMessage:
                 f'Дистанция: {self.distance:.3f} км; '
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
                 f'Потрачено ккал: {self.calories:.3f}.'
-                )
+        )
 
 
 class Training:
@@ -55,7 +55,7 @@ class Training:
                            self.get_spent_calories())
 
 
-class Running(Training):
+class Running(Training):                                                                    
     """Тренировка: бег."""
     CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
     CALORIES_MEAN_SPEED_SHIFT: float = 1.79
@@ -79,7 +79,7 @@ class SportsWalking(Training):
                  duration: float,
                  weight: float,
                  height: int
-                 ) -> None:
+                ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -88,7 +88,8 @@ class SportsWalking(Training):
                 + ((self.get_mean_speed() * self.KMH_IN_MSEC) ** 2
                  / (self.height / self.CM_IN_M))
                 * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
-                * self.weight) * self.duration * self.MIN_IN_H)
+                * self.weight) * self.duration * self.MIN_IN_H
+        )
 
 
 class Swimming(Training):
@@ -123,13 +124,12 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    train = {'SWM': Swimming,
-             'RUN': Running,
-             'WLK': SportsWalking
-             }
+    train: dict[str, str] = {'SWM': Swimming,
+                            'RUN': Running,
+                            'WLK': SportsWalking
+    }
     if workout_type not in train:
-        raise
-    ValueError(f'Типа тренировки {workout_type} нет в нашем словаре')
+        raise f'Типа тренировки {workout_type} нет в нашем словаре'
     return train[workout_type](*data)
 
 
