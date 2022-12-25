@@ -15,8 +15,7 @@ class InfoMessage:
                 f'Длительность: {self.duration:.3f} ч.; '
                 f'Дистанция: {self.distance:.3f} км; '
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
-                f'Потрачено ккал: {self.calories:.3f}.'
-        )
+                f'Потрачено ккал: {self.calories:.3f}.')
 
 
 class Training:
@@ -55,7 +54,7 @@ class Training:
                            self.get_spent_calories())
 
 
-class Running(Training):                                                                    
+class Running(Training):
     """Тренировка: бег."""
     CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
     CALORIES_MEAN_SPEED_SHIFT: float = 1.79
