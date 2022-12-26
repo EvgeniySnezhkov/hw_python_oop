@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from typing import Dict,Type
 
 @dataclass
 class InfoMessage:
@@ -15,7 +15,8 @@ class InfoMessage:
                 f'Длительность: {self.duration:.3f} ч.; '
                 f'Дистанция: {self.distance:.3f} км; '
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
-                f'Потрачено ккал: {self.calories:.3f}.')
+                f'Потрачено ккал: {self.calories:.3f}.'
+        )
 
 
 class Training:
@@ -121,11 +122,12 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    train: dict = {'SWM': Swimming,
-                   'RUN': Running,
-                   'WLK': SportsWalking}
+    train: dict[str, Type[Training]] = {'SWM': Swimming,
+                                        'RUN': Running,
+                                        'WLK': SportsWalking
+    }
     if workout_type not in train:
-        f'Типа тренировки {workout_type} нет в нашем словаре'
+        raise ValueError(f'Типа тренировки {workout_type} нет в нашем словаре')
     return train[workout_type](*data)
 
 
